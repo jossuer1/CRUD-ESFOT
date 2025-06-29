@@ -20,13 +20,13 @@ vector<vehiculos> leer(){
 };
 
 void agregar(const auto& autoAgregar){
-	for(const auto& id : listaVehiculos){
-		if(id.modelo == autoAgregar.modelo){
-			cout<<"modelo ya agregado"<<autoAgregar.modelo<<" ya existe"<<endl;
+	for(const auto& modelo : listaVehiculos){
+		if(modelo.id == autoAgregar.id){
+			cout<<"modelo ya agregado"<<autoAgregar.id<<" ya existe"<<endl;
 			return;
 		}
 	}
 	listaVehiculos.push_back(autoAgregar);
-	cout<<"Modelo agregadodo con existo"<<autoAgregar.modelo<<endl;
+	cout<<"Modelo agregadodo con existo"<<autoAgregar.id<<endl;
 }
 
