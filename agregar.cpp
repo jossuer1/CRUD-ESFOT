@@ -36,7 +36,7 @@ void agregar(){
 	while (true){
 		cout<<"Año: ";
 		cin>>nuevo.año;
-		if(nuevo.año >= 1950 && nuevo.año <=2025){
+		if(nuevo.año >= 1980 && nuevo.año <=2025){
 			break;
 		}else{
 			cout<<"Año ingresado invalido (SOLO AUTOS ENTRE 1980 Y 2025)"<<endl;
