@@ -8,7 +8,7 @@ struct vehiculos{
     int id;
     string marca;
     string modelo;
-    int año;
+    int aÃ±o;
     double precio; 
 	int cantidad;
 
@@ -29,8 +29,8 @@ void actualizar(){
 			getline(cin, v.marca);
 			cout<<"Ingrese el nuevo Modelo: ";
 			getline(cin, v.modelo);
-			cout<<"Ingrese el nuevo año: ";
-			cin>>v.año;
+			cout<<"Ingrese el nuevo aÃ±o: ";
+			cin>>v.aÃ±o;
 			cout<<"Ingrese el nuevo precio: ";
 			cin>>v.precio;
 			cin.ignore();
