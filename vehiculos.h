@@ -9,7 +9,7 @@ struct Vehiculo {
     int id;
     string marca;
     string modelo;
-    int anio;
+    int año;
     double precio;
     int cantidad;
 };
