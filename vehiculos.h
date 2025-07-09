@@ -14,4 +14,7 @@ struct Vehiculo {
     int cantidad;
 };
 
+extern vector<Vehiculo> listaVehiculos;
+extern int contadorID;
+
 #endif // VEHICULOS_H
