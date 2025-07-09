@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
+#include "../vehiculos.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -42,7 +43,7 @@ void MainWindow::on_pushButtonAgregar_clicked()
     }
 
     if (!encontrado) {
-        vehiculos nuevo;
+        Vehiculo nuevo;
         nuevo.id = contadorID++;
         nuevo.marca = marca;
         nuevo.modelo = modelo;
@@ -58,7 +59,6 @@ void MainWindow::on_pushButtonAgregar_clicked()
     ui->lineEditPrecio->clear();
 
     QMessageBox::information(this, "Vehículo guardado", encontrado ?
-                                                            "Cantidad aumentada en 1." :
-                                                            "Vehículo nuevo agregado con cantidad 1.");
+    "Cantidad aumentada en 1." :"Vehículo nuevo agregado con cantidad 1.");
 }
 

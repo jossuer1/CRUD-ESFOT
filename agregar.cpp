@@ -11,7 +11,7 @@ bool agregarVehiculo(const string& marca,const string& modelo,int año,double pr
 	nuevo.id = contadorID++;
 	nuevo.marca = marca;
 	nuevo.modelo = modelo;
-	nuevo.anio = año;
+	nuevo.año = año;
 	nuevo.precio = precio;
 	nuevo.cantidad = 1;
 
