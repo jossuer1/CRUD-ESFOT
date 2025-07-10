@@ -17,4 +17,6 @@ struct Vehiculo {
 extern vector<Vehiculo> listaVehiculos;
 extern int contadorID;
 
+bool agregarVehiculo(const string& marca, const string& modelo, int año, double precio);
+
 #endif // VEHICULOS_H

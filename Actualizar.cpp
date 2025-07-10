@@ -58,11 +58,8 @@ void actualizar(){
 					if(v.año >= 1950 && v.año <= 2025){
 						break;
 					}else {
-					cout<<"Anio ingresado invalido (Solo autos entre 1995 y 2025) " <<endl;
-				}else{
-					break;
-				}
-			}
+                    cout<<"Anio ingresado invalido (Solo autos entre 1995 y 2025) " <<endl;}
+                }
 
 			cout<<"¿Desea modificar el precio? (Escriba Si para confirmar): ";
 			getline(cin,opcion);
@@ -78,9 +75,9 @@ void actualizar(){
 	}
 	if (!encontrado){
 		cout<<"No se encontro un vehiculo con ese ID.\n";
-	}
+    }
 }
-
+}
 
 
 
