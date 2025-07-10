@@ -12,6 +12,7 @@ SOURCES += \
     ../agregar.cpp \
     ../eliminar.cpp \
     ../actualizar.cpp \
+    ../Mostrar.cpp \
     ../vehiculos.cpp
 
 HEADERS += \
