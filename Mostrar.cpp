@@ -1,13 +1,27 @@
 #include <iostream>
-#include <fstream>
+#include <string>
+#include <vector>
+#include "vehiculos.h"
 using namespace std;
 
 void mostrar() {
-    ifstream archivo("datos.txt"); // Abrimos el archivo para leer
-    if (!archivo.is_open()) {
-        cout << "No se pudo abrir el archivo." << endl;
+    cout << "=== INVENTARIO DE VEHÍCULOS ===" << endl;
+
+    if (listaVehiculos.empty()) {
+        cout << "No hay vehículos en el inventario." << endl;
         return;
     }
-    // Luego leeremos el contenido
-    archivo.close();
+
+    int totalAutos = 0;
+
+    cout << "\n===== LISTA DE VEHÍCULOS DISPONIBLES =====\n";
+    cout << "ID\tMarca\tModelo\tAño\tPrecio\tCantidad" << endl;
+
+    for (auto& v : listaVehiculos) {
+        cout << v.id << "\t" << v.marca << "\t" << v.modelo 
+             << "\t" << v.año << "\t$" << v.precio 
+             << "\t" << v.cantidad << endl;
+
+        totalAutos += v.cantidad;
+    }
 }
