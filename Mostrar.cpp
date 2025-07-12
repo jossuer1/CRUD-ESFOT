@@ -1,7 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include "vehiculos.h"
+#include <iostream>
 using namespace std;
 
 void mostrar() {
@@ -12,16 +10,11 @@ void mostrar() {
         return;
     }
 
-    int totalAutos = 0;
-
-    cout << "\n===== LISTA DE VEHÍCULOS DISPONIBLES =====\n";
     cout << "ID\tMarca\tModelo\tAño\tPrecio\tCantidad" << endl;
 
-    for (auto& v : listaVehiculos) {
+    for (const auto& v : listaVehiculos) {
         cout << v.id << "\t" << v.marca << "\t" << v.modelo 
              << "\t" << v.año << "\t$" << v.precio 
              << "\t" << v.cantidad << endl;
-
-        totalAutos += v.cantidad;
     }
 }
