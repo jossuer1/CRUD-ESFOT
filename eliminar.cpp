@@ -1,44 +1,26 @@
+#include "vehiculos.h"
 #include <iostream>
-#include <string>
-#include <vector>
-#include <clocale>
 using namespace std;
 
-//CREACION DE CRUD AUTOS
+extern vector<Vehiculo> listaVehiculos; 
 
-struct vehiculos{
-    int id;
-    string marca;
-    string modelo;
-    int año;
-    double precio; 
-    int cantidad;
-};
+void eliminar() {
+    cout << "=== ELIMINAR VEHÍCULO ===" << endl;
 
-vector<vehiculos> listaVehiculos;
-vector<vehiculos> leer() {
-    return listaVehiculos;
-}
+    int idEliminar;
+    cout << "Ingrese el ID del vehículo que desea eliminar: ";
+    cin >> idEliminar;
 
-int contadorID = 1;
+ 
+    auto it = find_if(listaVehiculos.begin(), listaVehiculos.end(), 
+                      [idEliminar](const Vehiculo& v) { return v.id == idEliminar; });
 
-// Función para agregar un vehículo
-void agregar() {
-    vehiculos nuevo;
-    nuevo.id = contadorID++;
-
-    cout << "Marca: ";
-    getline(cin, nuevo.marca);
-    cout << "Modelo: ";
-    getline(cin, nuevo.modelo);
-
-    while (true) {
-        cout << "Año: ";
-        cin >> nuevo.año;
-        if (nuevo.año >= 1950 && nuevo.año <= 2025) {
-            break;
-        } else {
-            cout << "Año ingresado invalido (SOLO AUTOS ENTRE 1950 Y 2025)" << endl;
-        }
+    if (it != listaVehiculos.end()) {
+      
+        listaVehiculos.erase(it);
+        cout << "Vehículo con ID " << idEliminar << " eliminado exitosamente." << endl;
+    } else {
+      
+        cout << "No se encontró un vehículo con ese ID." << endl;
     }
 }
