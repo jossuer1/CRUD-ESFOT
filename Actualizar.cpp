@@ -38,20 +38,20 @@ void actualizar(){
 			string opcion;
 			cout<<"¿Desea modificar la marca? (Escriba Si para confirmar): ";
 			getline(cin,opcion);
-			if (opcion == "Si"){
+			if (opcion == "s" || opcion == "S"){
 				cout<<"Nueva Marca: ";
 				getline(cin,v.marca);
 			}
 			cout<<"¿Desea modificar el modelo? (Escriba Si para confirmar): ";
 			getline(cin,opcion);
-			if (opcion == "Si"){
+			if (opcion == "s" || opcion == "S"){
 				cout<<"Nuevo modelo: ";
 				getline(cin,v.modelo);
 			}
 			while (true){
 				cout<<"¿Desea modificar el anio? (Escriba Si para confirmar): ";
 				getline(cin,opcion);
-				if (opcion == "Si"){
+				if (opcion == "s" || opcion == "S"){
 					cout<<"Nuevo anio: ";
 					cin>>v.año;
 					cin.ignore();
@@ -63,7 +63,7 @@ void actualizar(){
 
 			cout<<"¿Desea modificar el precio? (Escriba Si para confirmar): ";
 			getline(cin,opcion);
-			if (opcion == "Si"){
+			if (opcion == "s" || opcion =="S"){
 				cout<<"Nuevo precio: ";
 				cin>>v.precio;
 				cin.ignore();
@@ -74,7 +74,7 @@ void actualizar(){
 		}
 	}
 	if (!encontrado){
-		cout<<"No se encontro un vehiculo con ese ID.\n";
+		cout<<"No se encontro ningun vehiculo con ese ID.\n";
     }
 }
 }
