@@ -1,5 +1,4 @@
 #include "vehiculos.h"
-#include <iostream>
 using namespace std;
 
 extern vector<Vehiculo> listaVehiculos; 
