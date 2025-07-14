@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>469</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,105 +17,105 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>40</y>
-      <width>49</width>
-      <height>16</height>
+      <width>31</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>&quot;Marca: &quot;</string>
+     <string>Marca</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>80</y>
-      <width>61</width>
+      <width>41</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>&quot;Modelo:&quot;</string>
+     <string>Modelo</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>120</y>
-      <width>49</width>
+      <x>40</x>
+      <y>130</y>
+      <width>31</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>&quot;Precio:&quot;</string>
+     <string>Precio</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>160</y>
-      <width>49</width>
-      <height>16</height>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>&quot;Año:&quot;</string>
+     <string>Año</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonAgregar">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>250</y>
-      <width>121</width>
-      <height>61</height>
+      <x>230</x>
+      <y>40</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButtonAgregar</string>
+     <string>Agregar</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonActualizar">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>250</y>
-      <width>131</width>
-      <height>61</height>
+      <x>350</x>
+      <y>40</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButtonActualizar</string>
+     <string>Actualizar</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonComprar">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>250</y>
-      <width>131</width>
-      <height>61</height>
+      <x>230</x>
+      <y>100</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButtonComprar</string>
+     <string>Eliminar</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonLista">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>250</y>
-      <width>141</width>
-      <height>61</height>
+      <x>350</x>
+      <y>100</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButtonLista</string>
+     <string>Lista</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEditMarca">
@@ -154,7 +154,7 @@
       <x>90</x>
       <y>160</y>
       <width>111</width>
-      <height>25</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="minimum">
@@ -167,16 +167,54 @@
      <number>2025</number>
     </property>
    </widget>
+   <widget class="QLabel" name="labelImagen">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>461</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>labelImagen</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelImagen2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>21</height>
+     <width>469</width>
+     <height>17</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuCRUD_AUTOS_ESFOT">
+    <property name="title">
+     <string>CRUD AUTOS-ESFOT</string>
+    </property>
+   </widget>
+   <addaction name="menuCRUD_AUTOS_ESFOT"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

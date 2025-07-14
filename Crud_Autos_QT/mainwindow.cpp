@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
+#include <QPixmap>
 #include "../vehiculos.h"
 
 
@@ -9,12 +10,35 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    cargar_imagen();
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::cargar_imagen()
+{
+    // Imagen del carro
+    QPixmap imagenCarro("Picture/Car_F_02-1.jpg");
+    if (!imagenCarro.isNull()) {
+        ui->labelImagen->setPixmap(imagenCarro);
+    } else {
+        qDebug() << "No se pudo cargar la imagen del carro.";
+    }
+
+    // Imagen del logo
+    QPixmap logo("Picture/logo_esfot_buho.png");
+    if (!logo.isNull()) {
+        ui->labelImagen2->setPixmap(logo);
+    } else {
+        qDebug() << "No se pudo cargar el logo.";
+    }
+}
+
+
 
 void MainWindow::on_pushButtonAgregar_clicked()
 {
