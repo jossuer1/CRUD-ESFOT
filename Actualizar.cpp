@@ -1,83 +1,24 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <clocale>
+#include "vehiculos.h"
 using namespace std;
 
-struct vehiculos{
-    int id;
-    string marca;
-    string modelo;
-    int año;
-    double precio; 
-	int cantidad;
-
-};
-
-vector<vehiculos>listaVehiculos;
-
-
-void actualizar(){
-	int idAuto;
-	cout<<"Ingres el id del auto que desea actualizar: ";
-	cin >> idAuto;
-	cin.ignore();
-	bool encontrado = false;
-	
-	for(auto &  v:listaVehiculos){
-		if(v.id == idAuto){
-			encontrado = true;
-			cout<<"Vehiculo encontrado"<<endl;
-			cout<<"Datos Actuales: "<<endl;
-			cout<<"Marca: "<<v.marca<<endl;
-			cout<<"Modelo: "<<v.modelo<<endl;
-			cout<<"Anio: "<<v.año<<endl;
-			cout<<"Precio: $"<<v.precio<<endl;
-			cout<<"Cantidad: "<<v.cantidad<<endl;
-
-			string opcion;
-			cout<<"¿Desea modificar la marca? (Escriba Si para confirmar): ";
-			getline(cin,opcion);
-			if (opcion == "s" || opcion == "S"){
-				cout<<"Nueva Marca: ";
-				getline(cin,v.marca);
-			}
-			cout<<"¿Desea modificar el modelo? (Escriba Si para confirmar): ";
-			getline(cin,opcion);
-			if (opcion == "s" || opcion == "S"){
-				cout<<"Nuevo modelo: ";
-				getline(cin,v.modelo);
-			}
-			while (true){
-				cout<<"¿Desea modificar el anio? (Escriba Si para confirmar): ";
-				getline(cin,opcion);
-				if (opcion == "s" || opcion == "S"){
-					cout<<"Nuevo anio: ";
-					cin>>v.año;
-					cin.ignore();
-					if(v.año >= 1950 && v.año <= 2025){
-						break;
-					}else {
-                    cout<<"Anio ingresado invalido (Solo autos entre 1995 y 2025) " <<endl;}
-                }
-
-			cout<<"¿Desea modificar el precio? (Escriba Si para confirmar): ";
-			getline(cin,opcion);
-			if (opcion == "s" || opcion =="S"){
-				cout<<"Nuevo precio: ";
-				cin>>v.precio;
-				cin.ignore();
-			}
-			
-			cout<<"Datos actualizados correctamente.\n";
-			return;
-		}
+bool actualizarVehiculo (int id, const QString& nuevaMarca, const QString& nuevoModelo , int nuevoAnio, float nuevoPrecio){
+	for(auto& v:listaVehiculos) {
+           if (v.id == id){
+               if(nuevoAnio < 1950 || nuevoAnio  > 2025){
+                return false;
+	       }
+               v.marca = nuevaMarca;
+               v.modelo = nuevoModelo;
+               v.anio = nuevoAnio;
+               v.precio = nuevoPrecio;
+               return true;
+	   }
 	}
-	if (!encontrado){
-		cout<<"No se encontro ningun vehiculo con ese ID.\n";
-    }
+        return false;
 }
-}
+
+
+
 
 
 
