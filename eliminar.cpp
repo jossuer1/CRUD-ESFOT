@@ -1,25 +1,21 @@
-#include "vehiculos.h"
-using namespace std;
+void MainWindow::on_btnEliminar_clicked() {
+    bool ok;
+    int idEliminar = ui->lineEditIdEliminar->text().toInt(&ok);
 
-extern vector<Vehiculo> listaVehiculos; 
+    if (!ok) {
+        QMessageBox::warning(this, "Error", "Ingrese un ID válido.");
+        return;
+    }
 
-void eliminar() {
-    cout << "=== ELIMINAR VEHÍCULO ===" << endl;
-
-    int idEliminar;
-    cout << "Ingrese el ID del vehículo que desea eliminar: ";
-    cin >> idEliminar;
-
- 
-    auto it = find_if(listaVehiculos.begin(), listaVehiculos.end(), 
-                      [idEliminar](const Vehiculo& v) { return v.id == idEliminar; });
+    auto it = std::find_if(listaVehiculos.begin(), listaVehiculos.end(),
+                           [idEliminar](const Vehiculo &v) { return v.id == idEliminar; });
 
     if (it != listaVehiculos.end()) {
-      
         listaVehiculos.erase(it);
-        cout << "Vehículo con ID " << idEliminar << " eliminado exitosamente." << endl;
+        QMessageBox::information(this, "Éxito", 
+                                 QString("Vehículo con ID %1 eliminado.").arg(idEliminar));
     } else {
-      
-        cout << "No se encontró un vehículo con ese ID." << endl;
+        QMessageBox::warning(this, "No encontrado", 
+                             QString("No se encontró un vehículo con ID %1.").arg(idEliminar));
     }
 }
