@@ -11,7 +11,12 @@ bool actualizarVehiculo (int id, const QString& nuevaMarca, const QString& nuevo
                v.modelo = nuevoModelo;
                v.anio = nuevoAnio;
                v.precio = nuevoPrecio;
-               return true;
+
+		if(!guardarVehiculo(listaVehiculos,"autos.txt")){
+			return false;
+		}
+		return true;
+			
 	   }
 	}
         return false;
