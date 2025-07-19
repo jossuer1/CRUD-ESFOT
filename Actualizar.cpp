@@ -1,6 +1,24 @@
 #include "vehiculos.h"
-using namespace std;
+#inclede <fstream>
+#include <string>
+#include <sstream>
 
+bool guardarVehiculos(const vector<Vehiculo>& lista, const string& archivo({
+    ofstream file(archivo);
+    if(!file.is_open()){
+        return false;
+    }
+    for(const Vehiculo& v:lista){
+       file << v.id <<","
+	    << v.marca.toStdString() <<","
+	    << v.modelo.toStdString() <<","
+	    << v.anio << ","
+	    << v.precio << "\n";
+    }
+    file.close();
+    return true;
+}
+	       
 bool actualizarVehiculo (int id, const QString& nuevaMarca, const QString& nuevoModelo , int nuevoAnio, float nuevoPrecio){
 	for(auto& v:listaVehiculos) {
            if (v.id == id){
@@ -12,15 +30,13 @@ bool actualizarVehiculo (int id, const QString& nuevaMarca, const QString& nuevo
                v.anio = nuevoAnio;
                v.precio = nuevoPrecio;
 
-		if(!guardarVehiculo(listaVehiculos,"autos.txt")){
-			return false;
-		}
-		return true;
-			
+	       return guardarVehiculos(listaVehiculos,"autos.txt") ;  	
 	   }
 	}
         return false;
 }
+
+
 
 
 
