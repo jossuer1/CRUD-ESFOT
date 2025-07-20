@@ -3,7 +3,9 @@
 
 void guardarEnArchivo(){
 	ofstream archivo("Datos/autos.txt");
-	if(!archivo.is_open());
+	if(!archivo.is_open()){
+		return;
+	};
 	
 	for (const auto& v : listaVehiculos) {
         archivo << v.id << "," << v.marca << "," << v.modelo << ","
