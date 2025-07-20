@@ -1,22 +1,19 @@
 #include "vehiculos.h"
-#inclede <fstream>
+#include <fstream>
 #include <string>
 #include <sstream>
 
-bool guardarVehiculos(const vector<Vehiculo>& lista, const string& archivo({
-    ofstream file(archivo);
-    if(!file.is_open()){
-        return false;
-    }
-    for(const Vehiculo& v:lista){
-       file << v.id <<","
-	    << v.marca.toStdString() <<","
-	    << v.modelo.toStdString() <<","
-	    << v.anio << ","
-	    << v.precio << "\n";
-    }
-    file.close();
-    return true;
+bool guardarVehiculos(const vector<Vehiculo>& lista, const string& archivo){
+	ofstream file(arhivo);
+	if(!file.is_open()){
+	    return false;
+	}
+	for(const Vehiculo& v:lista){
+	    file << v.id<<","<< v.marca<<","<< v.modelo<<","
+		 << v.anio<<","<< v.precio<<","<< v.cantidad <<"\n";  
+	}
+	file.close();
+	return true;
 }
 	       
 bool actualizarVehiculo (int id, const QString& nuevaMarca, const QString& nuevoModelo , int nuevoAnio, float nuevoPrecio){
