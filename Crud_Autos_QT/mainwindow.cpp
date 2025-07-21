@@ -2,7 +2,24 @@
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
 #include <QPixmap>
-#include "../vehiculos.h"
+#include <QDebug>
+#include <vector>
+#include <string>
+using namespace std;
+
+// Estructura Vehiculo
+struct Vehiculo {
+    int id;
+    string marca;
+    string modelo;
+    int año;
+    double precio;
+    int cantidad;
+};
+
+// Variables globales
+vector<Vehiculo> listaVehiculos;
+int contadorID = 1;
 
 
 MainWindow::MainWindow(QWidget *parent)
