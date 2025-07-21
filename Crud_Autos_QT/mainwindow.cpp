@@ -21,6 +21,34 @@ struct Vehiculo {
 vector<Vehiculo> listaVehiculos;
 int contadorID = 1;
 
+//FUNCIONES
+bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio);
+
+
+//Agregar vehiculo
+
+bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio){
+    for(auto& v: listaVehiculos){
+        if(v.marca== marca && v.modelo ==modelo){
+            v.cantidad +=1;
+             //guardarEnArchivo();
+            return true;
+        }
+    }
+    Vehiculo nuevo;
+    nuevo.id = contadorID++;
+    nuevo.marca = marca;
+    nuevo.modelo = modelo;
+    nuevo.año = año;
+    nuevo.precio = precio;
+    nuevo.cantidad = 1;
+
+    listaVehiculos.push_back(nuevo);
+    //guardarEnArchivo();
+    return false;
+}
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -39,9 +67,9 @@ MainWindow::~MainWindow()
 void MainWindow::cargar_imagen()
 {
     // Imagen del carro
-    QPixmap imagenCarro("Picture/Car_F_02-1.jpg");
+    QPixmap imagenCarro("Picture/39726-banedikt.jpg");
     if (!imagenCarro.isNull()) {
-        ui->labelImagen->setPixmap(imagenCarro);
+        ui->label_Carro->setPixmap(imagenCarro);
     } else {
         qDebug() << "No se pudo cargar la imagen del carro.";
     }
@@ -49,14 +77,21 @@ void MainWindow::cargar_imagen()
     // Imagen del logo
     QPixmap logo("Picture/logo_esfot_buho.png");
     if (!logo.isNull()) {
-        ui->labelImagen2->setPixmap(logo);
+        ui->label_Esfot->setPixmap(logo);
+    } else {
+        qDebug() << "No se pudo cargar el logo.";
+    }
+    //Imagen de logo EPN
+    QPixmap logo_EPN("Picture/logo-epn-vertical.png");
+    if (!logo.isNull()) {
+        ui->label_EPN->setPixmap(logo_EPN);
     } else {
         qDebug() << "No se pudo cargar el logo.";
     }
 }
 
 
-
+// boton Agregar
 void MainWindow::on_pushButtonAgregar_clicked()
 {
     QString marcaQt = ui->lineEditMarca->text();
