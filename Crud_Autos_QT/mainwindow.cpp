@@ -5,6 +5,9 @@
 #include <QDebug>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 // Estructura Vehiculo
@@ -21,17 +24,77 @@ struct Vehiculo {
 vector<Vehiculo> listaVehiculos;
 int contadorID = 1;
 
-//FUNCIONES
+// FUNCIONES
 bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio);
 
+// Guardar listaVehiculos en archivo "vehiculos.txt"
+void guardarArchivo() {
+    ofstream archivo("vehiculos.txt", ios::out);
+    if (!archivo.is_open()) {
+        qDebug() << "No se pudo abrir el archivo para guardar.";
+        return;
+    }
+    for (const auto& v : listaVehiculos) {
+        archivo << v.id << "|"
+                << v.marca << "|"
+                << v.modelo << "|"
+                << v.año << "|"
+                << v.precio << "|"
+                << v.cantidad << "\n";
+    }
+    archivo.close();
+}
 
-//Agregar vehiculo
+// Cargar listaVehiculos desde archivo "vehiculos.txt"
+void cargarDesdeArchivo() {
+    ifstream archivo("vehiculos.txt");
+    if (!archivo.is_open()) {
+        qDebug() << "No se pudo abrir el archivo para leer.";
+        return;
+    }
 
+    string linea;
+    int maxID = 0;
+
+    while (getline(archivo, linea)) {
+        stringstream ss(linea);
+        string idStr, marcaStr, modeloStr, añoStr, precioStr, cantidadStr;
+
+        if (!getline(ss, idStr, '|')) continue;
+        if (!getline(ss, marcaStr, '|')) continue;
+        if (!getline(ss, modeloStr, '|')) continue;
+        if (!getline(ss, añoStr, '|')) continue;
+        if (!getline(ss, precioStr, '|')) continue;
+        if (!getline(ss, cantidadStr, '|')) continue;
+
+        Vehiculo v;
+        try {
+            v.id = stoi(idStr);
+            v.marca = marcaStr;
+            v.modelo = modeloStr;
+            v.año = stoi(añoStr);
+            v.precio = stod(precioStr);
+            v.cantidad = stoi(cantidadStr);
+        } catch (...) {
+            continue;
+        }
+
+        listaVehiculos.push_back(v);
+
+        if (v.id > maxID){
+             maxID = v.id;
+        }
+    }
+
+    contadorID = maxID + 1;
+    archivo.close();
+}
+
+// Agregar vehiculo
 bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio){
     for(auto& v: listaVehiculos){
-        if(v.marca== marca && v.modelo ==modelo && v.precio == precio){
+        if(v.marca == marca && v.modelo == modelo && v.precio == precio){
             v.cantidad +=1;
-             //guardarEnArchivo();
             return true;
         }
     }
@@ -44,26 +107,26 @@ bool agregarVehiculo(const string& marca,const string& modelo,int año,double pr
     nuevo.cantidad = 1;
 
     listaVehiculos.push_back(nuevo);
-    //guardarEnArchivo();
     return false;
 }
 
-
-
+// Constructor
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     cargar_imagen();
-
+    cargarDesdeArchivo();  // Carga los datos guardados al iniciar
 }
 
+// Destructor
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+// Cargar imágenes
 void MainWindow::cargar_imagen()
 {
     // Imagen del carro
@@ -73,23 +136,21 @@ void MainWindow::cargar_imagen()
     } else {
         qDebug() << "No se pudo cargar la imagen del carro.";
     }
-
-    // Imagen del logo
+    //Imagen del logo esfot
     QPixmap logo("Picture/logo_esfot_buho.png");
     if (!logo.isNull()) {
         ui->label_Esfot->setPixmap(logo);
     } else {
         qDebug() << "No se pudo cargar el logo.";
     }
-    //Imagen de logo EPN
+    //Imagen del logo EPN
     QPixmap logo_EPN("Picture/logo-epn-vertical.png");
-    if (!logo.isNull()) {
+    if (!logo_EPN.isNull()) {
         ui->label_EPN->setPixmap(logo_EPN);
     } else {
         qDebug() << "No se pudo cargar el logo.";
     }
 }
-
 
 // boton Agregar
 void MainWindow::on_pushButtonAgregar_clicked()
@@ -110,13 +171,14 @@ void MainWindow::on_pushButtonAgregar_clicked()
 
     bool repetido = agregarVehiculo(marca, modelo, año, precio);
 
+    guardarArchivo();
+
     ui->lineEditMarca->clear();
     ui->lineEditModelo->clear();
     ui->spinBoxAnio->setValue(2000);
     ui->lineEditPrecio->clear();
 
     QMessageBox::information(this, "Vehículo guardado", repetido ?
-            "Cantidad aumentada en 1." : "Vehículo nuevo agregado con cantidad 1.");
+                                                            "Cantidad aumentada en 1." : "Vehículo nuevo agregado con cantidad 1.");
 }
-
 
