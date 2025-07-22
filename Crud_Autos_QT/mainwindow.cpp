@@ -116,7 +116,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    cargar_imagen();
     cargarDesdeArchivo();  // Carga los datos guardados al iniciar
 }
 
@@ -124,32 +123,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-// Cargar imágenes
-void MainWindow::cargar_imagen()
-{
-    // Imagen del carro
-    QPixmap imagenCarro("Picture/39726-banedikt.jpg");
-    if (!imagenCarro.isNull()) {
-        ui->label_Carro->setPixmap(imagenCarro);
-    } else {
-        qDebug() << "No se pudo cargar la imagen del carro.";
-    }
-    //Imagen del logo esfot
-    QPixmap logo("Picture/logo_esfot_buho.png");
-    if (!logo.isNull()) {
-        ui->label_Esfot->setPixmap(logo);
-    } else {
-        qDebug() << "No se pudo cargar el logo.";
-    }
-    //Imagen del logo EPN
-    QPixmap logo_EPN("Picture/logo-epn-vertical.png");
-    if (!logo_EPN.isNull()) {
-        ui->label_EPN->setPixmap(logo_EPN);
-    } else {
-        qDebug() << "No se pudo cargar el logo.";
-    }
 }
 
 // boton Agregar
