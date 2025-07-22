@@ -17,11 +17,18 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>60</y>
-      <width>31</width>
+      <width>41</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string>Marca</string>
@@ -30,11 +37,18 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>100</y>
-      <width>41</width>
+      <width>51</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string>Modelo</string>
@@ -43,11 +57,18 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>150</y>
-      <width>31</width>
+      <width>41</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string>Precio</string>
@@ -56,11 +77,18 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>180</y>
-      <width>21</width>
+      <width>31</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string>Año</string>
@@ -75,6 +103,11 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Agregar</string>
     </property>
@@ -87,6 +120,11 @@
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Actualizar</string>
@@ -101,6 +139,11 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Eliminar</string>
     </property>
@@ -114,6 +157,11 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Lista</string>
     </property>
@@ -121,7 +169,7 @@
    <widget class="QLineEdit" name="lineEditMarca">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>70</x>
       <y>60</y>
       <width>113</width>
       <height>24</height>
@@ -131,7 +179,7 @@
    <widget class="QLineEdit" name="lineEditModelo">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>70</x>
       <y>100</y>
       <width>113</width>
       <height>24</height>
@@ -141,7 +189,7 @@
    <widget class="QLineEdit" name="lineEditPrecio">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>70</x>
       <y>140</y>
       <width>113</width>
       <height>24</height>
@@ -151,7 +199,7 @@
    <widget class="QSpinBox" name="spinBoxAnio">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>70</x>
       <y>180</y>
       <width>111</width>
       <height>31</height>
@@ -208,9 +256,9 @@
    <widget class="QLabel" name="label_Carro">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>-10</y>
-      <width>521</width>
+      <x>-10</x>
+      <y>0</y>
+      <width>541</width>
       <height>391</height>
      </rect>
     </property>

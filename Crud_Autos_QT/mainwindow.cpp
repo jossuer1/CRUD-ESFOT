@@ -29,7 +29,7 @@ bool agregarVehiculo(const string& marca,const string& modelo,int año,double pr
 
 bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio){
     for(auto& v: listaVehiculos){
-        if(v.marca== marca && v.modelo ==modelo){
+        if(v.marca== marca && v.modelo ==modelo && v.precio == precio){
             v.cantidad +=1;
              //guardarEnArchivo();
             return true;
