@@ -155,3 +155,41 @@ void MainWindow::on_pushButtonAgregar_clicked()
                                                             "Cantidad aumentada en 1." : "Vehículo nuevo agregado con cantidad 1.");
 }
 
+int idSeleccionado = -1;
+
+void MainWindow::on_TableVehiculos_cellClicked(int row, int ver)
+{
+    auto* itemID = ui->TableVehiculos->item(row, 0);
+
+    idSeleccionado = itemID->text().toInt();
+
+    auto* itemMarca = ui->TableVehiculos->item(row, 1);
+    auto* itemModelo = ui->TableVehiculos->item(row, 2);
+    auto* itemAnio = ui->TableVehiculos->item(row, 3);
+    auto* itemPrecio = ui->TableVehiculos->item(row, 4);
+
+    if(itemMarca) ui->lineEditMarca->setText(itemMarca->text());
+    if(itemModelo) ui->lineEditModelo->setText(itemModelo->text());
+    if(itemAnio) ui->spinBoxAnio->setValue(itemAnio->text().toInt());
+    if(itemPrecio) ui->lineEditPrecio->setText(itemPrecio->text());
+}
+
+
+
+void MainWindow::on_pushButtonLista_clicked()
+{
+    ui->TableVehiculos->clearContents();
+    ui->TableVehiculos->setRowCount(0);
+
+    for (int i = 0; i < listaVehiculos.size(); ++i) {
+        const auto& v = listaVehiculos[i];
+        ui->TableVehiculos->insertRow(i);
+        ui->TableVehiculos->setItem(i, 0, new QTableWidgetItem(QString::number(v.id)));
+        ui->TableVehiculos->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(v.marca)));
+        ui->TableVehiculos->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(v.modelo)));
+        ui->TableVehiculos->setItem(i, 3, new QTableWidgetItem(QString::number(v.año)));
+        ui->TableVehiculos->setItem(i, 4, new QTableWidgetItem(QString::number(v.precio, 'f', 2)));
+        ui->TableVehiculos->setItem(i, 5, new QTableWidgetItem(QString::number(v.cantidad)));
+    }
+}
+

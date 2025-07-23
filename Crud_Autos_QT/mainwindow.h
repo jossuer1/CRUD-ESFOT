@@ -22,6 +22,10 @@ private slots:
 
     void on_pushButtonAgregar_clicked();
 
+    void on_TableVehiculos_cellClicked(int row, int column);
+
+    void on_pushButtonLista_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
