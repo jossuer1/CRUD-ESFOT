@@ -129,17 +129,17 @@
        </column>
        <column>
         <property name="text">
-         <string>Precio</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
          <string>Año</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>cantidad</string>
+         <string>Precio</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Cantidad</string>
         </property>
        </column>
       </widget>

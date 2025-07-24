@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
-#include <QPixmap>
 #include <QDebug>
 #include <vector>
 #include <string>
@@ -10,7 +9,7 @@
 
 using namespace std;
 
-// Estructura Vehiculo
+// Estructura Vehiculo con id entero
 struct Vehiculo {
     int id;
     string marca;
@@ -24,10 +23,24 @@ struct Vehiculo {
 vector<Vehiculo> listaVehiculos;
 int contadorID = 1;
 
-// FUNCIONES
-bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio);
+// Función auxiliar para convertir id entero a formato "CAR_x"
+string idToString(int id) {
+    return "CAR_" + to_string(id);
+}
 
-// Guardar listaVehiculos en archivo "vehiculos.txt"
+// Función auxiliar para extraer número desde string "CAR_x"
+int stringToId(const string& str) {
+    if (str.find("CAR_") == 0) {
+        try {
+            return stoi(str.substr(4));
+        } catch (...) {
+            return 0; // En caso de error
+        }
+    }
+    return 0; // Si no tiene formato esperado
+}
+
+// Guardar listaVehiculos en archivo "vehiculos.txt" con formato "CAR_x"
 void guardarArchivo() {
     ofstream archivo("vehiculos.txt", ios::out);
     if (!archivo.is_open()) {
@@ -35,7 +48,7 @@ void guardarArchivo() {
         return;
     }
     for (const auto& v : listaVehiculos) {
-        archivo << v.id << "|"
+        archivo << idToString(v.id) << "|"  // Guardamos con formato "CAR_x"
                 << v.marca << "|"
                 << v.modelo << "|"
                 << v.año << "|"
@@ -45,7 +58,7 @@ void guardarArchivo() {
     archivo.close();
 }
 
-// Cargar listaVehiculos desde archivo "vehiculos.txt"
+// Cargar listaVehiculos desde archivo "vehiculos.txt" leyendo id con formato "CAR_x"
 void cargarDesdeArchivo() {
     ifstream archivo("vehiculos.txt");
     if (!archivo.is_open()) {
@@ -69,7 +82,7 @@ void cargarDesdeArchivo() {
 
         Vehiculo v;
         try {
-            v.id = stoi(idStr);
+            v.id = stringToId(idStr);  // Convertimos "CAR_x" a int
             v.marca = marcaStr;
             v.modelo = modeloStr;
             v.año = stoi(añoStr);
@@ -81,8 +94,8 @@ void cargarDesdeArchivo() {
 
         listaVehiculos.push_back(v);
 
-        if (v.id > maxID){
-             maxID = v.id;
+        if (v.id > maxID) {
+            maxID = v.id;
         }
     }
 
@@ -90,11 +103,11 @@ void cargarDesdeArchivo() {
     archivo.close();
 }
 
-// Agregar vehiculo
-bool agregarVehiculo(const string& marca,const string& modelo,int año,double precio){
-    for(auto& v: listaVehiculos){
-        if(v.marca == marca && v.modelo == modelo && v.precio == precio){
-            v.cantidad +=1;
+// Agregar vehículo
+bool agregarVehiculo(const string& marca, const string& modelo, int año, double precio) {
+    for (auto& v : listaVehiculos) {
+        if (v.marca == marca && v.modelo == modelo && v.precio == precio) {
+            v.cantidad += 1;
             return true;
         }
     }
@@ -125,7 +138,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// boton Agregar
+// Botón Agregar
 void MainWindow::on_pushButtonAgregar_clicked()
 {
     QString marcaQt = ui->lineEditMarca->text();
@@ -146,6 +159,8 @@ void MainWindow::on_pushButtonAgregar_clicked()
 
     guardarArchivo();
 
+    on_pushButtonLista_clicked(); // Actualizar tabla con nuevo vehículo
+
     ui->lineEditMarca->clear();
     ui->lineEditModelo->clear();
     ui->spinBoxAnio->setValue(2000);
@@ -157,11 +172,12 @@ void MainWindow::on_pushButtonAgregar_clicked()
 
 int idSeleccionado = -1;
 
+// Cuando se hace click en una celda de la tabla para seleccionar vehículo
 void MainWindow::on_TableVehiculos_cellClicked(int row, int ver)
 {
     auto* itemID = ui->TableVehiculos->item(row, 0);
-
-    idSeleccionado = itemID->text().toInt();
+    if(itemID)
+        idSeleccionado = stringToId(itemID->text().toStdString()); // Convertir "CAR_x" a int
 
     auto* itemMarca = ui->TableVehiculos->item(row, 1);
     auto* itemModelo = ui->TableVehiculos->item(row, 2);
@@ -174,8 +190,7 @@ void MainWindow::on_TableVehiculos_cellClicked(int row, int ver)
     if(itemPrecio) ui->lineEditPrecio->setText(itemPrecio->text());
 }
 
-
-
+// Botón Listar
 void MainWindow::on_pushButtonLista_clicked()
 {
     ui->TableVehiculos->clearContents();
@@ -184,7 +199,7 @@ void MainWindow::on_pushButtonLista_clicked()
     for (int i = 0; i < listaVehiculos.size(); ++i) {
         const auto& v = listaVehiculos[i];
         ui->TableVehiculos->insertRow(i);
-        ui->TableVehiculos->setItem(i, 0, new QTableWidgetItem(QString::number(v.id)));
+        ui->TableVehiculos->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(idToString(v.id))));  // Mostrar como "CAR_x"
         ui->TableVehiculos->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(v.marca)));
         ui->TableVehiculos->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(v.modelo)));
         ui->TableVehiculos->setItem(i, 3, new QTableWidgetItem(QString::number(v.año)));
@@ -192,4 +207,3 @@ void MainWindow::on_pushButtonLista_clicked()
         ui->TableVehiculos->setItem(i, 5, new QTableWidgetItem(QString::number(v.cantidad)));
     }
 }
-
