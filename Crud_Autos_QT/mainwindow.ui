@@ -107,43 +107,6 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0" colspan="4">
-      <widget class="QTableWidget" name="TableVehiculos">
-       <property name="columnCount">
-        <number>6</number>
-       </property>
-       <column>
-        <property name="text">
-         <string>ID</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Marca</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Modelo</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Año</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Precio</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Cantidad</string>
-        </property>
-       </column>
-      </widget>
-     </item>
      <item row="1" column="3">
       <widget class="QPushButton" name="pushButtonLista">
        <property name="font">
@@ -185,6 +148,38 @@
        <property name="text">
         <string>Modelo:</string>
        </property>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="3">
+      <widget class="QTableWidget" name="TableVehiculos">
+       <property name="columnCount">
+        <number>5</number>
+       </property>
+       <column>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Marca</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Modelo</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Año</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Precio</string>
+        </property>
+       </column>
       </widget>
      </item>
     </layout>
