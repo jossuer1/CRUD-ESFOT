@@ -1,42 +1,38 @@
-#include "vehiculos.h"
-#include <fstream>
-#include <string>
-#include <sstream>
+void MainWindow::on_pushButtonActualizar_clicked()
+{
+    if (idSeleccionado == -1) {
+        QMessageBox::warning(this, "Selección requerida", "Selecciona un vehículo de la tabla para actualizar.");
+        return;
+    }
 
-bool guardarVehiculos(const vector<Vehiculo>& lista, const string& archivo){
-	ofstream file(arhivo);
-	if(!file.is_open()){
-	    return false;
-	}
-	for(const Vehiculo& v:lista){
-	    file << v.id<<","<< v.marca<<","<< v.modelo<<","
-		 << v.anio<<","<< v.precio<<","<< v.cantidad <<"\n";  
-	}
-	file.close();
-	return true;
+    QString marcaQt = ui->lineEditMarca->text();
+    QString modeloQt = ui->lineEditModelo->text();
+    int año = ui->spinBoxAnio->value();
+    QString precioQt = ui->lineEditPrecio->text();
+
+    if (marcaQt.isEmpty() || modeloQt.isEmpty() || precioQt.isEmpty()) {
+        QMessageBox::warning(this, "Campos vacíos", "Por favor, llena todos los campos.");
+        return;
+    }
+
+    string marca = marcaQt.toStdString();
+    string modelo = modeloQt.toStdString();
+    double precio = precioQt.toDouble();
+
+    // Buscar y actualizar
+    for (auto& v : listaVehiculos) {
+        if (v.id == idSeleccionado) {
+            v.marca = marca;
+            v.modelo = modelo;
+            v.año = año;
+            v.precio = precio;
+
+            break;
+        }
+    }
+
+    guardarArchivo();
+    QMessageBox::information(this, "Actualizado", "Vehículo actualizado correctamente.");
+    on_pushButtonLista_clicked(); // refrescar tabla
 }
-	       
-bool actualizarVehiculo (int id, const QString& nuevaMarca, const QString& nuevoModelo , int nuevoAnio, float nuevoPrecio){
-	for(auto& v:listaVehiculos) {
-           if (v.id == id){
-               if(nuevoAnio < 1950 || nuevoAnio  > 2025){
-                return false;
-	       }
-               v.marca = nuevaMarca;
-               v.modelo = nuevoModelo;
-               v.anio = nuevoAnio;
-               v.precio = nuevoPrecio;
-
-	       return guardarVehiculos(listaVehiculos,"autos.txt") ;  	
-	   }
-	}
-        return false;
-}
-
-
-
-
-
-
-
 
