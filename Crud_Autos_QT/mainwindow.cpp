@@ -231,7 +231,7 @@ void MainWindow::on_pushButtonActualizar_clicked()
 }
 
 
-//boton eliminar
+//boton eliminar o limpieza
 void MainWindow::on_pushButtonEliminar_clicked()
 {
     if (idSeleccionado == -1) {
@@ -246,7 +246,6 @@ void MainWindow::on_pushButtonEliminar_clicked()
     if (respuesta == QMessageBox::No)
         return;
 
-    // Eliminar del vector
     auto it = std::remove_if(listaVehiculos.begin(), listaVehiculos.end(),
                              [](const Vehiculo& v) {
                                  return v.id == idSeleccionado;
@@ -256,12 +255,12 @@ void MainWindow::on_pushButtonEliminar_clicked()
         listaVehiculos.erase(it, listaVehiculos.end());
         guardarArchivo();
         QMessageBox::information(this, "Eliminado", "Vehículo eliminado correctamente.");
-        on_pushButtonLista_clicked(); // Refrescar tabla
+        on_pushButtonLista_clicked(); 
     } else {
         QMessageBox::warning(this, "Error", "No se pudo eliminar el vehículo.");
     }
 
-    // Limpiar selección y campos
+    // Limpieza de codigo
     idSeleccionado = -1;
     ui->lineEditMarca->clear();
     ui->lineEditModelo->clear();
