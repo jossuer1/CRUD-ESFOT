@@ -28,6 +28,8 @@ private slots:
 
     void on_pushButtonEliminar_clicked();
 
+    void on_pushButtonActualizar_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
